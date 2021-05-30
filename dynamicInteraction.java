@@ -1,11 +1,5 @@
 /* 
 DevOps assignment - Assignment 2 - Test automation using Selenium and Java
-Submitted by
-Dileep Kumar M | 2020mt93744@wilp.bits-pilani.ac.in,
-Sanu V Mony | 2020mt93710@wilp.bits-pilani.ac.in, 
-Joby Jose | 2020MT93754@wilp.bits-pilani.ac.in, 
-Hridya N S | 2020mt93709@wilp.bits-pilani.ac.in,
-Priyanka K P | 2020mt93735@wilp.bits-pilani.ac.in 
 */
 
 package com.devopsassignment;
@@ -22,6 +16,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import com.google.common.io.Files;
+
 public class dynamicInteraction {
 	
 	public static WebDriver driver;
@@ -39,8 +34,10 @@ public class dynamicInteraction {
 		driver.manage().timeouts().implicitlyWait(160, TimeUnit.SECONDS);
 		
 		
-		//select the checkbox and click on remove button
+		//select the checkbox 
 		driver.findElement(By.xpath("//input[@type='checkbox']")).click();
+		
+		//wait for a few seconds - to manage the page load time
 	
 		try {
 			Thread.sleep(10*1000);
@@ -49,16 +46,17 @@ public class dynamicInteraction {
 			e.printStackTrace();
 		}
 		
+		//and click on remove button
 		driver.findElement(By.xpath("//button[normalize-space()='Remove']")).click();
 
+		//wait for a few seconds - to manage the page load time
 		try {
 			Thread.sleep(10*1000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		//click on Enable button 
+		//click on Textbox Enable button 
 		driver.findElement(By.xpath("//button[normalize-space()='Enable']")).click();
 		
 		try {
@@ -74,7 +72,7 @@ public class dynamicInteraction {
 		File file = ts.getScreenshotAs(OutputType.FILE);
 
 		try {
-			//save the screenshot taken in destination path
+			//save the screenshot taken in ScreenShot_Folder
 			Files.copy(file, new File("./ScreenShot_Folder/dynamic_interaction_success.png"));
 		} catch (IOException err) {
 			err.printStackTrace();
@@ -83,8 +81,8 @@ public class dynamicInteraction {
 		System.out.println("the login page screenshot is taken");
 }
 		
-
 	@AfterClass
+	//close browser
 	public void cleanUp() {
 	driver.quit();
 	}		
